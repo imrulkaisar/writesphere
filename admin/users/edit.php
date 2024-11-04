@@ -1,5 +1,5 @@
 <?php
-// file excludes
+// file includes
 require '../../config.php'; // config file
 require BASE_PATH . '/includes/pdo_db.php';
 get_admin_header(); // include header
@@ -39,18 +39,33 @@ try {
       $error = "Invalid email.";
     } else {
 
-      $update_sql = 'UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id';
-      $update_stmt = $conn->prepare($update_sql);
-      $update_stmt->bindParam(":username", $username);
-      $update_stmt->bindParam(":email", $valid_email);
-      $update_stmt->bindParam(":role", $role);
-      $update_stmt->bindParam(":id", $user_id, PDO::PARAM_INT);
+      // check where the username or email is already exist on the database
+      $check_sql = "SELECT COUNT(*) FROM users WHERE (username = :username OR email = :email) AND id != :id";
+      $check_stmt = $conn->prepare($check_sql);
+      $check_stmt->bindParam(":username", $username);
+      $check_stmt->bindParam(":email", $valid_email);
+      $check_stmt->bindParam(":id", $user_id, PDO::PARAM_INT);
+      $check_stmt->execute();
 
-      if ($update_stmt->execute()) {
-        header('Location: index.php?success=true&message=updated');
-        exit();
+      $count = $check_stmt->fetchColumn();
+
+      if ($count > 0) {
+        $error = "This username or email is already used by another user. Please try a different one.";
       } else {
-        $error = "Failed to update user.";
+
+        $update_sql = 'UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id';
+        $update_stmt = $conn->prepare($update_sql);
+        $update_stmt->bindParam(":username", $username);
+        $update_stmt->bindParam(":email", $valid_email);
+        $update_stmt->bindParam(":role", $role);
+        $update_stmt->bindParam(":id", $user_id, PDO::PARAM_INT);
+
+        if ($update_stmt->execute()) {
+          header('Location: index.php?success=true&message=updated');
+          exit();
+        } else {
+          $error = "Failed to update user.";
+        }
       }
     }
   }

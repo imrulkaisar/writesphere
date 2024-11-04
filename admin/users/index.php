@@ -29,7 +29,10 @@ try {
   </header>
 
   <div class="user-table">
-    <h2>All Users</h2>
+    <div class="flex">
+      <h2>All Users</h2>
+      <a href="#" class="button">Add new user</a>
+    </div>
     <table>
       <thead>
         <tr>
