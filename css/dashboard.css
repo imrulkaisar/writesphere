@@ -160,3 +160,90 @@ table th {
 table tbody tr:hover {
   background: #f0f0f0;
 }
+
+/* edit user page css */
+.form-container {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.form-group label {
+  width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+@media (min-width: 600px) {
+  .form-group {
+    flex-direction: row;
+  }
+  .form-group label {
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group select {
+    width: 70%;
+  }
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #d4af7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.form-button:hover {
+  background-color: #b8905c;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    margin: 10px;
+  }
+
+  .form-button {
+    width: 100%;
+  }
+}
