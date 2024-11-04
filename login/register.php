@@ -20,6 +20,24 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     exit();
   }
 
+  try {
+    $sql = "SELECT COUNT(*) FROM users WHERE username = :username OR email = :email";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(":username", $username);
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+
+    $count = $stmt->fetchColumn();
+
+    if ($count > 0) {
+      header("Location: index.php?success=false&message=user_exist");
+      exit;
+    }
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+
   $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 

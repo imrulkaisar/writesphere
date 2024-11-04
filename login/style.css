@@ -19,6 +19,9 @@ html {
 .message.success p {
   color: #00ff00;
 }
+.message.error p {
+  color: #ff0000;
+}
 .container {
   background: #fff;
   border-radius: 10px;

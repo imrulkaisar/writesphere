@@ -3,14 +3,16 @@
 $success = isset($_GET['success']) ? $_GET['success'] : NULL;
 $message = isset($_GET['message']) ? $_GET['message'] : NULL;
 
-$class = $success ? 'success' : 'error';
+$class = $success == "true" ? 'success' : 'error';
 $show_message = NULL;
 
 switch ($message) {
   case 'registered':
-    $show_message = "Successfully registered! Please login";
+    $show_message = "Successfully registered! Please login.";
     break;
-
+  case 'user_exist':
+    $show_message = "Username or email is already exist. Please try different one.";
+    break;
   default:
     $show_message = NULL;
     break;
@@ -31,7 +33,7 @@ switch ($message) {
 <body>
   <main class="page">
     <div class="message <?php echo $class; ?>">
-      <p><?php echo "$show_message."; ?></p>
+      <p><?php echo "$show_message"; ?></p>
     </div>
     <div class="container">
       <!-- Sign In Form -->
