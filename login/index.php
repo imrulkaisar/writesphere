@@ -13,6 +13,14 @@ switch ($message) {
   case 'user_exist':
     $show_message = "Username or email is already exist. Please try different one.";
     break;
+    break;
+  case 'invalid_email':
+    $show_message = "Email is not valid.";
+    break;
+    break;
+  case 'invalid_credential':
+    $show_message = "Invalid username or password.";
+    break;
   default:
     $show_message = NULL;
     break;
@@ -40,7 +48,7 @@ switch ($message) {
       <div class="form-container sign-in-container">
         <form action="login.php" method="POST">
           <h2>Sign In</h2>
-          <input type="email" name="email" placeholder="Email" required>
+          <input type="text" name="username" placeholder="Email" required>
           <input type="password" name="password" placeholder="Password" required>
           <a href="#">Forgot your password?</a>
           <button type="submit">Sign In</button>

@@ -11,6 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   $email = filter_var($email, FILTER_VALIDATE_EMAIL);
   $password = trim($_POST['password']);
 
+  // show error message if the email is not in correct format
+  if (!$email) {
+    header("Location: index.php?success=false&message=invalid_email");
+    exit;
+  }
+
   // basic validation 
 
   if (empty($username) || empty($email) || empty($password)) {
