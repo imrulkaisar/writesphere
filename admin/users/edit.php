@@ -4,7 +4,17 @@ require '../../config.php'; // config file
 require BASE_PATH . '/includes/pdo_db.php';
 get_admin_header(); // include header
 
-$user_id = isset($_GET['id']) ? $_GET['id'] : NULL;
+$user_id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+
+// Get logged-in user info
+$logged_in_user_id = $_SESSION['user_id'];
+$logged_in_user_role = $_SESSION['role'];
+
+// Check if the user is allowed to edit
+if ($logged_in_user_role !== 'admin' && $user_id != $logged_in_user_id) {
+  header("Location: index.php?success=false&message=not_authorized");
+  exit();
+}
 
 $error = '';
 

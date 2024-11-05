@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       session_start();
       $_SESSION['user_id'] = $user['id'];
       $_SESSION['username'] = $user['username'];
+      $_SESSION['role'] = $user['role'];
 
       // redirect to the dashboard
       if ($user['role'] != 'subscriber') {
