@@ -57,12 +57,12 @@ try {
               <?php
               if ($_SESSION['role'] === 'admin' && $user['id'] !== $_SESSION['user_id']) {
                 echo "<a href='edit.php?id=" . $user['id'] . "'>Edit</a>";
-                echo " | <a href='delete.php?id=" . $user['id'] . "'>Delete</a>";
+                echo " | <a href='delete.php?id=" . $user['id'] . "' onclick=\"return confirm('Are you sure you want to delete this user?')\">Delete</a>";
               } elseif ($_SESSION['user_id'] === $user['id']) {
-                // Regular users can edit only their own profile
                 echo "<a href='edit.php?id=" . $user['id'] . "'>Edit</a>";
               }
               ?>
+
             </td>
           </tr>
         <?php endforeach; ?>

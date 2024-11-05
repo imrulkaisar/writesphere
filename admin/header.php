@@ -2,7 +2,7 @@
 // header.php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-  header('Location: ../login/login.php');
+  header('Location: ../login/');
   exit();
 }
 
@@ -28,13 +28,13 @@ define('BASE_URL', '/writesphere');
         <h2>WriteSphere</h2>
       </div>
       <ul class="nav-list">
-        <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a href="<?php echo BASE_URL; ?>/admin/dashboard.php"><i class="fas fa-home"></i> Dashboard</a></li>
         <li><a href="#"><i class="fas fa-pencil-alt"></i> Create Post</a></li>
         <li><a href="#"><i class="fas fa-file-alt"></i> My Posts</a></li>
         <li><a href="#"><i class="fas fa-comments"></i> Comments</a></li>
         <li><a href="#"><i class="fas fa-tags"></i> Categories</a></li>
         <li><a href="<?php echo BASE_URL; ?>/admin/users/"><i class="fas fa-users"></i> Users</a></li>
         <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-        <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        <li><a href="<?php echo BASE_URL; ?>/login/logout.php" onclick="return confirm('Are you sure you want to log out?')"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
       </ul>
     </nav>
