@@ -31,7 +31,7 @@ try {
   <div class="user-table">
     <div class="flex">
       <h2>All Users</h2>
-      <a href="#" class="button">Add new user</a>
+      <a href="add-new.php" class="button">Add new user</a>
     </div>
     <table>
       <thead>
